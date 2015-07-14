@@ -11,5 +11,5 @@ submit.onclick = function() {
 socket.on("item created", function (data) {
   console.log("whattup");
   todos.innerHTML = '';
-  todos.innerHTML = '<p>' + datas + '</p>';
+  todos.innerHTML = '<p>' + data + '</p>';
 })

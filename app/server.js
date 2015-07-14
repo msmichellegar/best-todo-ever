@@ -3,7 +3,7 @@ var routes = require('./routes.js');
 var handlebars = require('handlebars');
 var server = new Hapi.Server();
 
-var createHash = require('./redis');
+var redisAdaptor = require('./redis.js');
 
 server.connection({
 	port: 9090
@@ -22,15 +22,21 @@ server.views({
 server.route(routes);
 
 io.on("connection", function (socket) {
+	redisAdaptor.getHashes("todos", function(err, res) {
+		if (err) {
+			console.log(err);
+		}
+		console.log(res);
+	});
 	socket.on("todo", function(data) {
-		createHash(data, function(err, res) {
+		redisAdaptor.createHash(data, function(err, res) {
 			if(err) {
 				console.log(err);
 			}
 			console.log(res);
 			socket.emit("item created", data);
-		})
-	})
-})
+		});
+	});
+});
 
 server.start();
