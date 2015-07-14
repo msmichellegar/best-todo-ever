@@ -4,7 +4,8 @@
   "description": "## What is this?",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/nodemon ./app/server.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,11 @@
   },
   "homepage": "https://github.com/msmichellegar/best-todo-ever",
   "dependencies": {
-    "handlebars": "^3.0.3"
+    "handlebars": "^3.0.3",
+    "hapi": "^8.8.0",
+    "redis": "^0.12.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.3.7"
   }
 }
