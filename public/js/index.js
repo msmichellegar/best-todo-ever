@@ -10,6 +10,7 @@ submit.onclick = function() {
 
 socket.on("item created", function (data) {
   console.log("whattup");
-  todos.innerHTML = '';
-  todos.innerHTML = '<p>' + data + '</p>';
-})
+  // todos.innerHTML = '';
+  // todos.innerHTML = '<p>' + data + '</p>';
+  var todos = data;
+});
