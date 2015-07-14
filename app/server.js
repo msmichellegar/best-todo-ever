@@ -24,11 +24,16 @@ server.views({
 server.route(routes);
 
 io.on("connection", function (socket) {
-	socket.on("createItem", function(data) {
-		createHash(data, function(data) {
-			console.log("success", data);
-			socket.emit("item created", data);
-		})
+	socket.on("todo", function(data) {
+		console.log("hey there");
+		socket.emit("item created", data);
+		// createHash(data, function(err, res) {
+		// 	if(err) {
+		// 		console.log(err);
+		// 	}
+		// 	console.log(res);
+		// 	socket.emit("item created", data);
+		// })
 	})
 })
 
