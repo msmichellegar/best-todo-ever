@@ -3,21 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title>Best To Do List Ever</title>
-    <script src="./public/css/main.css"></script>
+    <link rel="stylesheet" href="./public/css/main.css" type="text/css">
   </head>
   <body>
-    <h1>Hello Michelle</h1>
+    <h1>Best, Totally Working To Do List Ever</h1>
     <todo-list></todo-list>
     <input class="todo">
-    <button type="button" class="submit"></button>
+    <button type="button" class="submit">Submit</button>
+
     <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/riot/2.2.1/riot+compiler.min.js"></script>
     <script src="./public/js/index.js"></script>
     <script src="./public/js/tags.js"></script>
-
     <script>
       riot.mount('todo-list', {todos:todos});
     </script>
-
   </body>
 </html>

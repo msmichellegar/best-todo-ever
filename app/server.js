@@ -26,7 +26,6 @@ io.on("connection", function (socket) {
 		if (err) {
 			console.log(err);
 		}
-		console.log("one", res);
 		socket.emit("item created", res);
 	});
 	socket.on("todo", function(data) {
@@ -38,10 +37,8 @@ io.on("connection", function (socket) {
 				if (err) {
 					console.log(err);
 				}
-				console.log("three");
 				io.emit("item created", res);
 			});
-			console.log("two", res);
 		});
 	});
 });

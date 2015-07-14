@@ -1,5 +1,5 @@
 var socket = io();
-var todos = "asd";
+var todos = "data...";
 
 var input = document.getElementsByClassName("todo")[0];
 var submit = document.getElementsByClassName("submit")[0];
@@ -12,7 +12,7 @@ console.log("submit");
 socket.on("item created", function (data) {
   // console.log("whattup");
   // todos.innerHTML = '';
-  // todos.innerHTML = '<p>' + data + '</p>';
   console.log("now todos is:", todos);
   todos = data;
+  console.log("nowww todos is:", todos);
 });
