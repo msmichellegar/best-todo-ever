@@ -3,15 +3,17 @@ var client = redis.createClient();
 
 var redisAdaptor = {};
 
-redisAdaptor.createHash = function (object, callback) {
-	var id = Math.random().toString(36).substr(2, 5);
-	client.hmset("todos", {
-		object : object
-	}, callback);
+redisAdaptor.addList = function (object, callback) {
+	client.rpush("todo-list", object, function (err, data) {
+   		callback(err, data);
+	})	
 };
 
-redisAdaptor.getHashes = function (key, callback) {
-  client.hgetall(key, callback);
+redisAdaptor.getList = function (key, callback) {
+    client.lrange("todo-list", 0, -1, function (err, data){
+    	callback(err, data);
+    })
 };
 
 module.exports = redisAdaptor;
+

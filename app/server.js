@@ -22,19 +22,26 @@ server.views({
 server.route(routes);
 
 io.on("connection", function (socket) {
-	redisAdaptor.getHashes("todos", function(err, res) {
+	redisAdaptor.getList("todos", function(err, res) {
 		if (err) {
 			console.log(err);
 		}
-		console.log(res);
+		console.log("one", res);
+		socket.emit("item created", res);
 	});
 	socket.on("todo", function(data) {
-		redisAdaptor.createHash(data, function(err, res) {
+		redisAdaptor.addList(data, function(err, res) {
 			if(err) {
 				console.log(err);
 			}
-			console.log(res);
-			socket.emit("item created", data);
+			redisAdaptor.getList("todos", function(err, res) {
+				if (err) {
+					console.log(err);
+				}
+				console.log("three", res);
+				io.emit("item created", res);
+			});
+			console.log("two", res);
 		});
 	});
 });
