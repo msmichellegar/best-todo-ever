@@ -1,15 +1,15 @@
 <todo-list>
 
-  <div class="todos">
-    <ul>
+  <div>{todos}</div>
+ <!--    <ul>
       <li each={todo in todos}>{todo}</li>
     </ul>
-  </div>
+  </div> -->
 
   <script>
     this.on('mount', function(){
-      console.log("mountain");
-    })
+      console.log("mounted. The value of todos:",todos);
+    });
   </script>
 
 </todo-list>

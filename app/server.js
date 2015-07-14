@@ -38,7 +38,7 @@ io.on("connection", function (socket) {
 				if (err) {
 					console.log(err);
 				}
-				console.log("three", res);
+				console.log("three");
 				io.emit("item created", res);
 			});
 			console.log("two", res);

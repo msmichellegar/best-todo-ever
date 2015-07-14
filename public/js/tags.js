@@ -1,6 +1,6 @@
-riot.tag('todo-list', '<div class="todos"> <ul> <li each="{todo in todos}">{todo}</li> </ul> </div>', function(opts) {
+riot.tag('todo-list', '<div>{todos}</div> ', function(opts) {
     this.on('mount', function(){
-      console.log("mountain");
-    })
+      console.log("mounted. The value of todos:",todos);
+    });
   
 });
