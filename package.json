@@ -1,0 +1,22 @@
+{
+  "name": "best-todo-ever",
+  "version": "1.0.0",
+  "description": "## What is this?",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/msmichellegar/best-todo-ever.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/msmichellegar/best-todo-ever/issues"
+  },
+  "homepage": "https://github.com/msmichellegar/best-todo-ever",
+  "dependencies": {
+    "handlebars": "^3.0.3"
+  }
+}
