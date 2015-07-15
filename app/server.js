@@ -21,29 +21,84 @@ server.views({
 
 server.route(routes);
 
-io.on("connection", function (socket) {
-	redisAdaptor.getList("todos", function(err, res) {
-		if (err) {
-			console.log(err);
-		}
-		todos = res;
+function compareTime (a, b) {
+	if(a.creationTime > b.creationTime){
+		return 1;
+	}
+	if(a.creationTime < b.creationTime){
+		return -1;
+	};
+	return 0;
+}
 
-		socket.emit("page loaded", res);
+io.on("connection", function (socket) {
+
+	redisAdaptor.getAllHashKeys(function(err, res) {
+		if (err) {
+			console.log(err)
+		}
+
+		var todoListData = [];
+		var i;
+		var length = res.length;
+
+		for (i = length - 1; i >= 0; i--) {
+	
+			redisAdaptor.getHashedValues(res[i], function(err, res) {
+				if (err) {
+					console.log(err)
+				}
+				var obj = {
+					todo: res[0],
+					creationTime : res[1],
+					completedTime : res[2]
+				}
+				todoListData.push(obj)
+
+				if (todoListData.length === length) {
+					todoListData.sort(compareTime);
+					socket.emit("page loaded", todoListData);
+				}
+			});
+		};
 	});
+
 	socket.on("todo", function(data) {
-		redisAdaptor.addList(data, function(err, res) {
+		redisAdaptor.setItem(data, function(err, res){
 			if(err) {
 				console.log(err);
 			}
-			redisAdaptor.getList("todos", function(err, res) {
+
+			redisAdaptor.getAllHashKeys(function(err, res) {
 				if (err) {
-					console.log(err);
+					console.log(err)
 				}
-				console.log("three");
-				io.emit("item created", res);
+
+				var todoListData = [];
+				var i;
+				var length = res.length;
+
+				for (i = length - 1; i >= 0; i--) {
+			
+					redisAdaptor.getHashedValues(res[i], function(err, res) {
+						if (err) {
+							console.log(err)
+						}
+						var obj = {
+							todo: res[0],
+							creationTime : res[1],
+							completedTime : res[2]
+						}
+						todoListData.push(obj)
+
+						if (todoListData.length === length) {
+							todoListData.sort(compareTime);
+							io.emit("item created", todoListData);
+						}
+					});
+				};
 			});
-			console.log("two", res);
-		});
+		})
 	});
 });
 

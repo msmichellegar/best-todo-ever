@@ -15,4 +15,27 @@ redisAdaptor.getList = function (key, callback) {
     });
 };
 
+
+
+redisAdaptor.setItem = function (todo, callback) {
+	var  key = Math.random().toString(36).substring(7);
+	var creationTime = new Date().getTime().toString();
+	console.log(typeof creationTime);
+	var obj = {
+		"todo" : todo,
+		"creationTime" : creationTime,
+		"completeionTime" : null
+	};
+	client.hmset(key, obj, callback)
+}
+
+redisAdaptor.getHashedValues = function(key, callback) {
+	client.hvals(key, callback)
+}
+
+redisAdaptor.getAllHashKeys = function(callback) {
+	client.keys('*', callback)
+}
+
 module.exports = redisAdaptor;
+
