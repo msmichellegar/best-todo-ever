@@ -11,4 +11,5 @@ var submit = document.getElementsByClassName("submit")[0];
 
 submit.onclick = function() {
   socket.emit("todo", input.value);
+  input.value = '';
 };
