@@ -18,7 +18,8 @@ function sendingToDoList (res, socket, evt) {
 			obj = {
 				todo: res[0],
 				creationTime : res[1],
-				completedTime : res[2]
+				completedTime : res[2],
+				key : res[3]
 			}
 
 			todoListData.push(obj)
