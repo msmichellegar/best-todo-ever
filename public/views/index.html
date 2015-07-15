@@ -3,13 +3,17 @@
   <head>
     <meta charset="utf-8">
     <title>Best To Do List Ever</title>
+    <link rel="stylesheet" href="./css/main.css">
   </head>
   <body>
-    <todo-list></todo-list>
-    <form onSubmit="event.preventDefault();">
-      <input class="todo">
-      <input type="submit" class="submit" value="submit">
-    </form>
+    <div class="todo-container">
+      <h1>Things to do...</h1>
+      <todo-list></todo-list>
+      <form onSubmit="event.preventDefault();">
+        <input class="todo">
+        <input type="submit" class="submit" value="submit">
+      </form>
+    </div>
     <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/riot/2.2.1/riot+compiler.min.js"></script>
     <script src="./js/main.js"></script>
