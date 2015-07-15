@@ -6,11 +6,6 @@
     </ul>
   </div>
 
-  <ul>
-    <li each={ items.filter(whatShow) }>
-        <input type="checkbox" checked={ done } onclick={ parent.toggle }> { title }
-    </li>
-  </ul>
 
   <script>
     this.on('mount', function(){

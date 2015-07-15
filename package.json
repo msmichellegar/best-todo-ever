@@ -4,8 +4,8 @@
   "description": "## What is this?",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/.bin/nodemon ./app/server.js",
+    "test": "tape test/**/**/*.test.js",
+    "start": "nodemon index.js",
     "compile": ""
   },
   "repository": {
@@ -25,6 +25,7 @@
     "socket.io": "^1.3.5"
   },
   "devDependencies": {
-    "nodemon": "^1.3.7"
+    "nodemon": "^1.3.7",
+    "tape": "^4.0.0"
   }
 }
