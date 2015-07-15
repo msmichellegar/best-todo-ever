@@ -7,7 +7,7 @@ var redisAdaptor = require('./redis.js');
 var sendingToDoList = require("./lib/sending-todos.js");
 
 server.connection({
-	port: 9090
+	port: process.env.PORT || 9090
 });
 
 var io = require('socket.io')(server.listener);
