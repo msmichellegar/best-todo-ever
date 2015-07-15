@@ -26,7 +26,7 @@ function compareTime (a, b) {
 		return 1;
 	}
 	if(a.creationTime < b.creationTime){
-		return -1;
+		return -21;
 	};
 	return 0;
 }
@@ -61,6 +61,7 @@ io.on("connection", function (socket) {
 				}
 			});
 		};
+
 	});
 
 	socket.on("todo", function(data) {

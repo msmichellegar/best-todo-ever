@@ -1,5 +1,11 @@
+html {
+  background-color: #aecefe; }
+
 body {
-  background-color: #AECEFE; }
+  margin: 100px; }
+
+h1 {
+  padding-bottom: 20px; }
 
 /*# sourceMappingURL=main.scss.map */
 
