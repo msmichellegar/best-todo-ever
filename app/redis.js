@@ -3,17 +3,17 @@ var client = redis.createClient();
 
 var redisAdaptor = {};
 
-redisAdaptor.addList = function (object, callback) {
-	client.rpush("todo-list", object, function (err, data) {
-   		callback(err, data);
-	});
-};
+// redisAdaptor.addList = function (object, callback) {
+// 	client.rpush("todo-list", object, function (err, data) {
+//    		callback(err, data);
+// 	});
+// };
 
-redisAdaptor.getList = function (key, callback) {
-    client.lrange("todo-list", 0, -1, function (err, data){
-    	callback(err, data);
-    });
-};
+// redisAdaptor.getList = function (key, callback) {
+//     client.lrange("todo-list", 0, -1, function (err, data){
+//     	callback(err, data);
+//     });
+// };
 
 redisAdaptor.setItem = function (todo, callback) {
 	var  key = Math.random().toString(36).substring(7);
@@ -22,7 +22,8 @@ redisAdaptor.setItem = function (todo, callback) {
 	var obj = {
 		"todo" : todo,
 		"creationTime" : creationTime,
-		"completionTime" : null
+		"completionTime" : null,
+		"key":key
 	};
 	client.hmset(key, obj, callback);
 };
@@ -42,6 +43,12 @@ redisAdaptor.markDone = function(taskId, callback) {
 		"completionTime" : completionTime
 	};
 	console.log(key, obj);
+	client.hmset(key, obj, callback);
+};
+
+redisAdaptor.updateEntry = function(obj, callback) {
+	var key = obj.key;
+
 	client.hmset(key, obj, callback);
 };
 

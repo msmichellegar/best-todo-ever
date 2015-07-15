@@ -2,15 +2,10 @@
 
   <div>
     <ul>
-      <li each={todos, key in todos}><input type="checkbox" class="checkbox" id={todos.creationTime} onclick={markDone}>{todos.todo}</li>
+      <li each={todos, key in todos}><input type="checkbox" class="checkbox" id={todos.key} onclick={markDone}>{todos.todo}</li>
     </ul>
   </div>
 
-  <ul>
-    <li each={ items.filter(whatShow) }>
-        <input type="checkbox" checked={ done } onclick={ parent.toggle }> { title }
-    </li>
-  </ul>
 
   <script>
     this.on('mount', function(){
@@ -20,14 +15,15 @@
     var that = this
 
     socket.on("item created", function (data) {
-      todos = data;
-      console.log(todos);
+      todos = data.filter(isCompleted);
+
       that.update();
     });
 
     socket.on("task done", function (data) {
-      console.log("checkbox checked");
-      // that.update();
+      todos = data.filter(isCompleted);
+
+      that.update();
     });
   </script>
 

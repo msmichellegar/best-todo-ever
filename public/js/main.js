@@ -1,8 +1,14 @@
 var socket = io();
 
-socket.on("page loaded", function (data) {
-  todos = data;
+function isCompleted (task) {
+  if (task.completedTime === "null") {
+    return task;
+  }
+}
 
+socket.on("page loaded", function (data) {
+  todos = data.filter(isCompleted);
+  
   riot.mount('*', {todos:todos});
 });
 
@@ -11,10 +17,10 @@ var submit = document.getElementsByClassName("submit")[0];
 
 submit.onclick = function() {
   socket.emit("todo", input.value);
+  input.value = '';
 };
 
-function markDone(err) {
-  var taskId = this._id;
-  console.log("taskId:",taskId);
+function markDone(e) {
+  var taskId = e.target.id;
   socket.emit("task done", taskId);
 }
