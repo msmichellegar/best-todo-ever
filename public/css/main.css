@@ -1,4 +1,5 @@
 html {
+  min-height: 100%;
 	width: 100%;
 	background-color: blue;
 	font-family: Helvetica;
@@ -22,12 +23,12 @@ h1 {
     position: relative;
     margin: 50px auto;
     padding: 40px 0;
-    width: 720px;
+    width: 80%;
 }
 .todo-container::before,
 .todo-container::after {
     content: "";
-    width: 710px;
+    width: 100%;
     height: 100%;
     position: absolute;
     left: -2px;
