@@ -29,6 +29,19 @@ io.on("connection", function (socket) {
 		sendingToDoList(res, socket, "page loaded");
 	});
 
+	socket.on("task done", function(data) {
+		redisAdaptor.markDone(data, function(err, res){
+
+			if (err) {
+				console.log(err);
+			}
+
+			redisAdaptor.getAllHashKeys(function (err, res) {
+				sendingToDoList(res, io, "task done");
+			});
+		})
+	})
+
 	socket.on("todo", function(data) {
 		redisAdaptor.setItem(data, function (err, res){
 

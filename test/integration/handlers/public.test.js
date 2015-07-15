@@ -8,9 +8,8 @@ test("Testing public directory is available", function (t) {
 	}
 
 	server.inject(opts, function (res) {
-		console.log(res.payload);
 		var containsJS = res.payload.indexOf("var socket = io();") > -1;
-		
+
 		t.equal(res.statusCode, 200, "status codee is OK");
 		t.equal(containsJS, true, "serves the javascript");
 		t.end();
