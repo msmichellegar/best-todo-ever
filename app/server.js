@@ -26,8 +26,9 @@ io.on("connection", function (socket) {
 		if (err) {
 			console.log(err);
 		}
-		console.log("one", res);
-		socket.emit("item created", res);
+		todos = res;
+
+		socket.emit("page loaded", res);
 	});
 	socket.on("todo", function(data) {
 		redisAdaptor.addList(data, function(err, res) {
