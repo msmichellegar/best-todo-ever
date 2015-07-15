@@ -43,7 +43,7 @@ io.on("connection", function (socket) {
 		var length = res.length;
 
 		for (i = length - 1; i >= 0; i--) {
-	
+
 			redisAdaptor.getHashedValues(res[i], function(err, res) {
 				if (err) {
 					console.log(err)
@@ -64,6 +64,15 @@ io.on("connection", function (socket) {
 
 	});
 
+	socket.on("task done", function(data) {
+		redisAdaptor.markDone(data, function(err, res){
+			if (err) {
+				console.log(err);
+			}
+			console.log(res);
+		})
+	})
+
 	socket.on("todo", function(data) {
 		redisAdaptor.setItem(data, function(err, res){
 			if(err) {
@@ -80,7 +89,7 @@ io.on("connection", function (socket) {
 				var length = res.length;
 
 				for (i = length - 1; i >= 0; i--) {
-			
+
 					redisAdaptor.getHashedValues(res[i], function(err, res) {
 						if (err) {
 							console.log(err)

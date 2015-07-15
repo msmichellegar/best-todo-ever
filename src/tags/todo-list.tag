@@ -2,7 +2,7 @@
 
   <div>
     <ul>
-      <li each={todos, key in todos}>{todos.todo}</li>
+      <li each={todos, key in todos}><input type="checkbox" class="checkbox" id={todos.creationTime} onclick={markDone}>{todos.todo}</li>
     </ul>
   </div>
 
@@ -23,6 +23,11 @@
       todos = data;
       console.log(todos);
       that.update();
+    });
+
+    socket.on("task done", function (data) {
+      console.log("checkbox checked");
+      // that.update();
     });
   </script>
 
