@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "tape test/**/**/*.test.js",
-    "start": "nodemon index.js",
+    "start": "node index.js",
     "compile": ""
   },
   "repository": {
