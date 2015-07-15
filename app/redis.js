@@ -22,30 +22,34 @@ redisAdaptor.setItem = function (todo, callback) {
 	var obj = {
 		"todo" : todo,
 		"creationTime" : creationTime,
-		"completeionTime" : null,
+		"completionTime" : null,
 		"key":key
 	};
-	client.hmset(key, obj, callback)
-}
+	client.hmset(key, obj, callback);
+};
 
 redisAdaptor.getHashedValues = function(key, callback) {
-	client.hvals(key, callback)
-}
+	client.hvals(key, callback);
+};
 
 redisAdaptor.getAllHashKeys = function(callback) {
-	client.keys('*', callback)
-}
+	client.keys('*', callback);
+};
+
+redisAdaptor.markDone = function(taskId, callback) {
+	var key = taskId;
+	var completionTime = new Date().getTime().toString();
+	var obj = {
+		"completionTime" : completionTime
+	};
+	console.log(key, obj);
+	client.hmset(key, obj, callback);
+};
 
 redisAdaptor.updateEntry = function(obj, callback) {
-	// var object = {
-	// 	"todo" : todo,
-	// 	"creationTime" : creationTime,
-	// 	"completeionTime" : null,
-	// 	"key":key
-	// };
 	var key = obj.key;
-	client.hmset(key, obj, callback)
-}
+
+	client.hmset(key, obj, callback);
+};
 
 module.exports = redisAdaptor;
-
