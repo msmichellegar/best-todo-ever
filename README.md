@@ -2,13 +2,13 @@
 
 ## What is this?
 
-This is the (modestly-named) best to do app ever, built with Redis, Hapi.js, Riot.js and Socket.io. The app allows you to add to-dos and mark them as done in real time.
+This is the best (modestly-named) to do app ever, built with Redis, Hapi.js, Riot.js and Socket.io. The app allows you to add to-dos and mark them as done in real time.
 
 You can find a live demo [here](http://besttodo.herokuapp.com).
 
 ## Why did we build this?
 
-We built this as a learning exercise in integrating Redis, Riot.js and Socket.io, as part of the [DWYL Summer](https://github.com/dwyl/summer-2015). Guidance was very kindly provided by @dwyl.
+We built this as a learning exercise in integrating Redis, Riot.js and Socket.io, as part of the [DWYL Summer](https://github.com/dwyl/summer-2015).
 
 ## How to run this project
 
