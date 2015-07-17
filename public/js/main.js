@@ -1,19 +1,13 @@
 var socket = io();
 
-function isCompleted (task) {
-  if (task.completedTime === "null") {
-    return task;
-  }
-}
-
 socket.on('todos:active', function(data) {
   todos = JSON.parse(data);
-  riot.mount('*', {todos: todos});
+  riot.mount('todo-list', {todos: todos});
 })
 
 socket.on('todos:inactive', function(data) {
-
-  console.log("inactive data mainjs >>>", data);
+  completedTodos = JSON.parse(data);
+  riot.mount('complete-list', {completedTodos: completedTodos});
 })
 
 var input = document.getElementsByClassName("todo")[0];

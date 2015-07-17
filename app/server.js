@@ -37,8 +37,8 @@ function socketSetup (socket) {
 		});
 	});
 
-	sub.on("message", function(channel, data) {
-		socket.emit(channel, data);
+	sub.on("message", function(channelName, data) {
+		socket.emit(channelName, data);
 	});
 
 	socket.on("todo", function(data) {

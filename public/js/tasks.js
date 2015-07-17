@@ -1,13 +1,4 @@
-<todo-list>
-
-  <div>
-    <ul>
-      <li each={todos, key in todos}><input type="checkbox" class="checkbox" id={todos.key} onclick={markDone}>{todos.todo}</li>
-    </ul>
-  </div>
-
-
-  <script>
+riot.tag('tasks', '<h1>Things to do...</h1> <form onSubmit="event.preventDefault();"> <input class="todo"> <input type="submit" class="submit" value="submit"> </form>  <h1>Things complete...</h1> ', function(opts) {
     this.on('mount', function(){
       console.log("mounted. The value of todos:",todos);
     });
@@ -25,6 +16,5 @@
 
       that.update();
     });
-  </script>
-
-</todo-list>
+  
+});

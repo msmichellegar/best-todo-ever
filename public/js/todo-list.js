@@ -3,7 +3,7 @@ riot.tag('todo-list', '<div> <ul> <li each="{todos, key in todos}"><input type="
       console.log("mounted. The value of todos:",todos);
     });
 
-    var that = this
+    var that = this;
 
     socket.on("item created", function (data) {
       todos = data.filter(isCompleted);
