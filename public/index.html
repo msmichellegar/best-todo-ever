@@ -8,15 +8,19 @@
   <body>
     <div class="todo-container">
       <h1>Things to do...</h1>
-      <todo-list></todo-list>
       <form onSubmit="event.preventDefault();">
         <input class="todo">
         <input type="submit" class="submit" value="submit">
       </form>
+      <todo-list></todo-list>
+      <h1>Things complete...</h1>
+      <complete-list></complete-list>
     </div>
     <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/riot/2.2.1/riot+compiler.min.js"></script>
     <script src="./js/main.js"></script>
     <script src="./js/todo-list.js"></script>
+    <script src="./js/complete-list.js"></script>
+
   </body>
 </html>
