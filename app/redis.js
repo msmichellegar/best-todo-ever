@@ -64,6 +64,11 @@ redisAdaptor.markUndone = function(taskId, callback) {
 	client.hmset(key, obj, callback);
 };
 
+redisAdaptor.deleteTask = function (taskId, callback){
+	var key = taskId;
+	client.del(key, callback);
+};
+
 module.exports = {
 	redisAdaptor: redisAdaptor,
 	pub: pub,

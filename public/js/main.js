@@ -6,6 +6,7 @@ socket.on('todos:active', function(data) {
 })
 
 socket.on('todos:inactive', function(data) {
+  console.log("todos:inactive socket in mainjs called")
   completedTodos = JSON.parse(data);
   riot.mount('complete-list', {completedTodos: completedTodos});
 })
@@ -26,4 +27,10 @@ function markDone(e) {
 function markUndone(e) {
   var taskId = e.target.id;
   socket.emit("task undone", taskId);
+}
+
+function deleteTask(e){
+  console.log("delete task called")
+  var taskId = e.target.id;
+  socket.emit("task deleted", taskId);
 }

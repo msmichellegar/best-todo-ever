@@ -2,7 +2,7 @@
 
   <div>
     <ul>
-      <li each={completedTodos, key in completedTodos}><input type="checkbox" class="checkbox" id={completedTodos.key} onclick={markUndone} checked>{completedTodos.todo}</li>
+      <li each={completedTodos, key in completedTodos}><input type="checkbox" class="checkbox" id={completedTodos.key} onclick={markUndone} checked>{completedTodos.todo}<button id={completedTodos.key} onclick={deleteTask}>Delete</button></li>
     </ul>
   </div>
 
@@ -25,6 +25,13 @@
 
       that.update();
     });
+    
+    // socket.on("task deleted", function (data) {
+    //   completedTodos = data.filter(isCompleted);
+    // 
+    //   that.update();
+    // });
+    
   </script>
 
 </complete-list>
