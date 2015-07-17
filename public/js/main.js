@@ -6,11 +6,11 @@ function isCompleted (task) {
   }
 }
 
-socket.on("page loaded", function (data) {
+socket.on('todos:active', function(data) {
   todos = data.filter(isCompleted);
 
-  riot.mount('*', {todos:todos});
-});
+  riot.mount('*', {todos: data});
+})
 
 var input = document.getElementsByClassName("todo")[0];
 var submit = document.getElementsByClassName("submit")[0];

@@ -8,7 +8,7 @@
     "start": "npm run compile && node index.js",
     "compile": "riot src/tags/ public/js/ ",
     "compile:watch": "riot -w src/tags/ public/js/ ",
-    "dev": "npm run compile:watch & nodemon -e html,tag index.js"
+    "dev": "npm run compile:watch & nodemon -e html,tag,js index.js"
   },
   "repository": {
     "type": "git",

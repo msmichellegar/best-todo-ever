@@ -2,6 +2,9 @@ var redis  = require("redis");
 var client;
 var url = require("url");
 
+var pub = redis.createClient();
+var sub = redis.createClient();
+
 if(process.env.REDISTOGO_URL) {
 	var redisURL = url.parse(process.env.REDISTOGO_URL);
 	client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
@@ -15,7 +18,6 @@ var redisAdaptor = {};
 redisAdaptor.setItem = function (todo, callback) {
 	var  key = Math.random().toString(36).substring(7);
 	var creationTime = new Date().getTime().toString();
-	console.log(typeof creationTime);
 	var obj = {
 		"todo" : todo,
 		"creationTime" : creationTime,
@@ -43,4 +45,8 @@ redisAdaptor.markDone = function(taskId, callback) {
 	client.hmset(key, obj, callback);
 };
 
-module.exports = redisAdaptor;
+module.exports = {
+	redisAdaptor: redisAdaptor,
+	pub: pub,
+	sub: sub
+};

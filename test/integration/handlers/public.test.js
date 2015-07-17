@@ -1,5 +1,5 @@
 var test = require("tape");
-var server = require("../../../app/server.js");
+var server = require("../../../app/server.js").server;
 
 test("Testing public directory is available", function (t) {
 	var opts = {
