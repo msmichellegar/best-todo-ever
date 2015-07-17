@@ -1,6 +1,5 @@
 var Hapi 		= require('hapi');
 var routes 		= require('./routes.js');
-var handlebars 	= require('handlebars');
 var server 		= new Hapi.Server();
 
 var redisAdaptor = require('./redis.js');
