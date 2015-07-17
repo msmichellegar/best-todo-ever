@@ -2,7 +2,7 @@
 
   <div>
     <ul>
-      <li each={todos, key in todos}><input type="checkbox" class="checkbox" id={todos.key} onclick={markDone}>{todos.todo}</li>
+      <li each={todos, key in todos}><input type="checkbox" class="checkbox" id={todos.key} onkeyup={markDone}>{todos.todo}</li>
     </ul>
   </div>
 

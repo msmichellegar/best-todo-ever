@@ -8,7 +8,7 @@ function isCompleted (task) {
 
 socket.on("page loaded", function (data) {
   todos = data.filter(isCompleted);
-  
+
   riot.mount('*', {todos:todos});
 });
 

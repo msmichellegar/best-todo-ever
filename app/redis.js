@@ -43,10 +43,4 @@ redisAdaptor.markDone = function(taskId, callback) {
 	client.hmset(key, obj, callback);
 };
 
-redisAdaptor.updateEntry = function(obj, callback) {
-	var key = obj.key;
-
-	client.hmset(key, obj, callback);
-};
-
 module.exports = redisAdaptor;

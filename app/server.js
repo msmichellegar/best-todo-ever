@@ -12,20 +12,11 @@ server.connection({
 
 var io = require('socket.io')(server.listener);
 
-server.views({
-  engines: {
-    html: handlebars
-  },
-  relativeTo: __dirname,
-  path: '../public/views'
-});
-
 server.route(routes);
 
 io.on("connection", function (socket) {
 
 	redisAdaptor.getAllHashKeys(function (err, res) {
-
 		sendingToDoList(res, socket, "page loaded");
 	});
 
@@ -39,8 +30,8 @@ io.on("connection", function (socket) {
 			redisAdaptor.getAllHashKeys(function (err, res) {
 				sendingToDoList(res, io, "task done");
 			});
-		})
-	})
+		});
+	});
 
 	socket.on("todo", function(data) {
 		redisAdaptor.setItem(data, function (err, res){
@@ -52,7 +43,7 @@ io.on("connection", function (socket) {
 			redisAdaptor.getAllHashKeys(function (err, res) {
 				sendingToDoList(res, io, "item created");
 			});
-		})
+		});
 	});
 });
 
