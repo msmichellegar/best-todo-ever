@@ -1,4 +1,4 @@
-riot.tag('complete-list', '<div> <ul> <li each="{completedTodos, key in completedTodos}"><input type="checkbox" class="checkbox" id="{completedTodos.key}" onclick="{markDone}" checked>{completedTodos.todo}</li> </ul> </div>', function(opts) {
+riot.tag('complete-list', '<div> <ul> <li each="{completedTodos, key in completedTodos}"><input type="checkbox" class="checkbox" id="{completedTodos.key}" onclick="{markUndone}" checked>{completedTodos.todo}<button id="{completedTodos.key}" onclick="{deleteTask}">Delete</button></li> </ul> </div>', function(opts) {
     this.on('mount', function(){
       console.log("mounted. The value of completed todos:",completedTodos);
     });
@@ -11,10 +11,16 @@ riot.tag('complete-list', '<div> <ul> <li each="{completedTodos, key in complete
       that.update();
     });
 
-    socket.on("task done", function (data) {
+    socket.on("task undone", function (data) {
       completedTodos = data.filter(isCompleted);
 
       that.update();
     });
+
+
+
+
+
+    
   
 });

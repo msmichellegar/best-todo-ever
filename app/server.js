@@ -36,6 +36,32 @@ function socketSetup (socket) {
 			});
 		});
 	});
+	
+	socket.on("task undone", function(data) {
+		redisAdaptor.markUndone(data, function(err, res){
+
+			if (err) {
+				console.log(err);
+			}
+
+			redisAdaptor.getAllHashKeys(function (err, res) {
+				sendingToDoList(res, io, "todos:inactive");
+			});
+		});
+	});
+
+	socket.on("task deleted", function(data) {
+		redisAdaptor.deleteTask(data, function(err, res){
+
+			if (err) {
+				console.log(err);
+			}
+
+			redisAdaptor.getAllHashKeys(function (err, res) {
+				sendingToDoList(res, io, "todos:inactive");
+			});
+		});
+	});
 
 	sub.on("message", function(channelName, data) {
 		socket.emit(channelName, data);

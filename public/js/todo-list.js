@@ -5,16 +5,5 @@ riot.tag('todo-list', '<div> <ul> <li each="{todos, key in todos}"><input type="
 
     var that = this;
 
-    socket.on("item created", function (data) {
-      todos = data.filter(isCompleted);
-
-      that.update();
-    });
-
-    socket.on("task done", function (data) {
-      todos = data.filter(isCompleted);
-
-      that.update();
-    });
   
 });
