@@ -54,6 +54,16 @@ redisAdaptor.markDone = function(taskId, callback) {
 	client.hmset(key, obj, callback);
 };
 
+redisAdaptor.markUndone = function(taskId, callback) {
+	var key = taskId;
+	var completionTime = "null";
+	var obj = {
+		"completionTime" : completionTime
+	};
+	console.log(key, obj);
+	client.hmset(key, obj, callback);
+};
+
 module.exports = {
 	redisAdaptor: redisAdaptor,
 	pub: pub,

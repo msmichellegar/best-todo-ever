@@ -22,3 +22,8 @@ function markDone(e) {
   var taskId = e.target.id;
   socket.emit("task done", taskId);
 }
+
+function markUndone(e) {
+  var taskId = e.target.id;
+  socket.emit("task undone", taskId);
+}
