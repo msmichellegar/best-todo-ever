@@ -2,15 +2,24 @@ var redis  = require("redis");
 var client;
 var url = require("url");
 
-var pub = redis.createClient();
-var sub = redis.createClient();
+var pub;
+var sub;
 
 if(process.env.REDISTOGO_URL) {
 	var redisURL = url.parse(process.env.REDISTOGO_URL);
+
 	client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
 	client.auth(redisURL.auth.split(":")[1]);
+
+	pub = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
+	pub.auth(redisURL.auth.split(":")[1]);
+
+	sub = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
+	sub.auth(redisURL.auth.split(":")[1]);
 } else {
 	client = redis.createClient();
+	pub = redis.createClient();
+	sub = redis.createClient();
 }
 
 var redisAdaptor = {};
