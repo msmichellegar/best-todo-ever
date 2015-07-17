@@ -38,18 +38,18 @@ function socketSetup (socket) {
 	});
 
 	sub.on("message", function(channel, data) {
-		sendingToDoList(data, io, "todos:active");
+		socket.emit(channel, data);
 	});
 
 	socket.on("todo", function(data) {
 		redisAdaptor.setItem(data, function (err, res){
-
+			
 			if (err) {
 				console.log(err);
 			}
 
 			redisAdaptor.getAllHashKeys(function (err, res) {
-				pub.publish("todos:active", res);
+				sendingToDoList(res, io, "todos:active");
 			});
 		});
 	});

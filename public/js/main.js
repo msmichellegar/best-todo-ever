@@ -7,9 +7,13 @@ function isCompleted (task) {
 }
 
 socket.on('todos:active', function(data) {
-  todos = data.filter(isCompleted);
+  todos = JSON.parse(data);
+  riot.mount('*', {todos: todos});
+})
 
-  riot.mount('*', {todos: data});
+socket.on('todos:inactive', function(data) {
+
+  console.log("inactive data mainjs >>>", data);
 })
 
 var input = document.getElementsByClassName("todo")[0];
